@@ -7,11 +7,10 @@ class Solution:
 
         for i, v in enumerate(nums):
 
-            if target - v not in curr:
-                curr[v] = i
-
-            else:
+            if target - v in curr:
                 return [i, curr[target-v]]
+
+            curr[v] = i
             
 if __name__ == "__main__":
     print(Solution().twoSum([3,2,4], 6))
