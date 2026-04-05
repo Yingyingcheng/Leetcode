@@ -21,7 +21,7 @@ from typing import List
 
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def groupAnagrams1(self, strs: List[str]) -> List[List[str]]:
 
         d = defaultdict(list)
         
@@ -36,12 +36,23 @@ class Solution:
 
         return list(d.values())
     
+    def groupAnagrams2(self, strs: List[str]) -> List[List[str]]:
+        d = defaultdict(list)
+        
+        for w in strs:
+
+            sorted_str = ''.join(sorted(w))
+            d[sorted_str].append(w)
+        print(d.values)
+        return list(d.values())
 
 if __name__ == "__main__":
-    print(Solution().groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
-    print(Solution().groupAnagrams([""]))
-    print(Solution().groupAnagrams(["a"]))
-
+    print(Solution().groupAnagrams1(["eat","tea","tan","ate","nat","bat"]))
+    print(Solution().groupAnagrams1([""]))
+    print(Solution().groupAnagrams1(["a"]))
+    print(Solution().groupAnagrams2(["eat","tea","tan","ate","nat","bat"]))
+    print(Solution().groupAnagrams2([""]))
+    print(Solution().groupAnagrams2(["a"]))
 
 ## list, dict, set : Unhashable type (mutable)
 ## int, str, float, tuple: Hashable type (immutable)
