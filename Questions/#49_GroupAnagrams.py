@@ -43,7 +43,6 @@ class Solution:
 
             sorted_str = ''.join(sorted(w))
             d[sorted_str].append(w)
-        print(d.values)
         return list(d.values())
 
 if __name__ == "__main__":
