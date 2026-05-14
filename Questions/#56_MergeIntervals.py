@@ -46,3 +46,22 @@ if __name__ == "__main__":
     print(Solution().merge([[1, 4], [4, 5]]))
     print(Solution().merge([[4, 7], [1, 4]]))
     print(Solution().merge([[1, 10], [2, 6], [8, 10]]))
+
+
+## 1.   Time Complexity: O(N log N)
+## (1). Sorting : In Python, Timsort has a complexity of O(N log N).
+## (2). Linear Scan : After sorting, the script iterates through the list exactly once using a for loop:
+##      for start, end in intervals[1:]. Inside this loop, all operations (comparing values and appending to a list) are O(1).
+## (3). Total: O(N log N) + O(N) simplifies to O(N log N).
+
+
+## 2.   Space Complexity: O(N)
+## (1). Result List (O(N)): You create a new list res to store the merged intervals. In the worst case (where no intervals overlap), res will contain N intervals, requiring O(N) space.
+## (2). Sorting Space (O(N)): Python’s sort() method (Timsort) typically requires up to O(N) additional space for temporary storage during the sorting process.
+## (3). Total: The overall auxiliary space complexity is O(N).
+
+
+## Follow up: Can you do this in-place to save space?
+
+## While you could modify the input list directly to achieve O(1) extra space (excluding the space for sorting),
+## it is usually safer to return a new list. This prevents side effects, meaning the original data remains unchanged for other parts of the application—a "Senior" practice that is highly valued in React/TypeScript development where immutability is key.
