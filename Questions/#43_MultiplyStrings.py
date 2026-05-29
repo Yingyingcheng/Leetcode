@@ -28,10 +28,17 @@ class Solution:
         l1, l2 = len(num1), len(num2)
         res = [0] * (l1 + l2)
         num1, num2 = num1[::-1], num2[::-1]
+
+        # think about your elementary multiply 2 integer!!!
         for i2 in range(l2):
             for i1 in range(l1):
 
                 digit = int(num2[i2]) * int(num1[i1])
+
+                ## this need to consider if just do res[i1 + i2] += (digit%10) & res[i1 + i2 + 1] += (digit//10)is wrong way!
+                ## e.g. res[2] == 8 and digit == 2, (digit%10) == 2 then! your res[2] now == 8 + 2 == 10
+                ## res[3] == res[3] + 2 // 10 == res[3]
+                ## the res[2] should be 0 and res[3] carry should be 1 actuallyyyy
                 res[i1 + i2] += digit
                 res[i1 + i2 + 1] += res[i1 + i2] // 10
                 res[i1 + i2] = res[i1 + i2] % 10
