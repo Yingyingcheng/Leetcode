@@ -24,3 +24,30 @@
 # 1 <= nums.length <= 10 ** 4
 # 0 <= nums[i] <= 1000
 # It's guaranteed that you can reach nums[n - 1].
+
+
+from typing import List
+
+
+class Solution1:
+    def jump(self, nums: List[int]) -> int:
+
+        n = len(nums)
+        dp = [float("inf")] * (n)
+
+        dp[-1] = 0
+
+        for i in range(n - 2, -1, -1):
+
+            end = min(n, i + nums[i] + 1)
+
+            for j in range(i + 1, end):
+
+                dp[i] = min(dp[i], 1 + dp[j])
+
+        return dp[0]
+
+
+if __name__ == "__main__":
+    print(Solution1().jump([2, 3, 1, 1, 4]))
+    print(Solution1().jump([2, 3, 1, 0, 4]))
