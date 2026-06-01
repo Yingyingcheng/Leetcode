@@ -48,6 +48,27 @@ class Solution1:
         return dp[0]
 
 
+class Solution2:
+    def jump(self, nums: List[int]) -> int:
+
+        l = r = 0
+        res = 0
+
+        while r < len(nums) - 1:
+            farthest = 0
+
+            for i in range(l, r + 1):
+                farthest = max(farthest, i + nums[i])
+
+            l = r + 1
+            r = farthest
+            res += 1
+
+        return res
+
+
 if __name__ == "__main__":
     print(Solution1().jump([2, 3, 1, 1, 4]))
     print(Solution1().jump([2, 3, 1, 0, 4]))
+    print(Solution2().jump([2, 3, 1, 1, 4]))
+    print(Solution2().jump([2, 3, 1, 0, 4]))
