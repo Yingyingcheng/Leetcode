@@ -16,5 +16,27 @@
 # Explanation: 2 ** -2 = 1/2 ** 2 = 1/4 = 0.25
 
 
-# class Solution:
-#     def myPow(self, x: float, n: int) -> float:
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+
+        def dfs(x, n):
+
+            if x == 0:
+                return 0
+
+            if n == 0:
+                return 1
+
+            res = dfs(x, n // 2)
+            res *= res
+            return res * x if n % 2 == 1 else res
+
+        res = dfs(x, abs(n))
+
+        return res if n >= 0 else 1 / res
+
+
+if __name__ == "__main__":
+    print(Solution().myPow(2.00000, 10))
+    print(Solution().myPow(2.10000, 3))
+    print(Solution().myPow(2.00000, -2))
