@@ -21,3 +21,27 @@
 # Constraints:
 # 0 <= s.length <= 5 * 10 ** 4
 # s consists of English letters, digits, symbols and spaces.
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_length = 0
+        char = set()
+
+        l = 0 
+
+        for r in range(len(s)):
+
+            while s[r] in char:
+                char.remove(s[l])
+                l += 1
+            char.add(s[r])
+            max_length = max(max_length, r - l + 1)
+
+        return max_length
+    
+
+if __name__ == "__main__":
+    print(Solution().lengthOfLongestSubstring("abcabcbb"))
+    print(Solution().lengthOfLongestSubstring("bbbbb"))
+    print(Solution().lengthOfLongestSubstring("pwwkew"))
