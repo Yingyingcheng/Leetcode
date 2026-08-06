@@ -28,6 +28,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
 
         res = []
+        visited = set()
 
         def dfs(curPermu):
 
@@ -37,13 +38,15 @@ class Solution:
             
             for num in nums:
 
-                if num not in curPermu:
+                if num not in visited:
                     
                     curPermu.append(num)
+                    visited.add(num)
 
                     dfs(curPermu)
 
                     curPermu.pop()
+                    visited.remove(num)
 
         dfs([])
         return res
