@@ -35,3 +35,50 @@
 # 2 <= candidates[i] <= 40
 # All elements of candidates are distinct.
 # 1 <= target <= 40
+
+from typing import List
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+
+        res = []
+
+        def dfs(i, curSum, curcomb):
+
+            if curSum == target:
+                res.append(curcomb.copy())
+                return
+
+            if i >= len(candidates) or curSum > target:
+                return
+
+
+            # Decision 1: Include candidates[i] (can stay on same index to reuse it)
+            curcomb.append(candidates[i])
+            dfs(i, curSum + candidates[i], curcomb)
+
+            # Decision 2: Backtrack and skip candidates[i]  
+            curcomb.pop()
+            dfs(i+1, curSum, curcomb)
+
+        dfs(0, 0, [])
+        return res 
+
+
+
+if __name__ == "__main__":
+    print(Solution().combinationSum([2,3,6,7], 7))
+    print(Solution().combinationSum([2,3,5], 8))
+    print(Solution().combinationSum([2], 1))
+
+
+
+
+#                     dfs(0, [], total=0)
+#                    /                   \
+#         Include 2 /                     \ Skip 2
+#                  v                       v
+#       dfs(0, [2], total=2)         dfs(1, [], total=0)
+#             /          \
+#   Include 2/            \ Skip 2
+#           v              v
+# dfs(0, [2,2], total=4)  dfs(1, [2], total=2)
