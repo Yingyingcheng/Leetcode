@@ -10,6 +10,7 @@
 
 # The element 1 occurs at the indices 0 and 3.
 
+from builtins import int
 from typing import Counter, List
 
 class Solution:
@@ -37,6 +38,20 @@ class Solution1:
         
         return False
 
+class Solution2:
+    def containsDuplicate1(self, nums: List[int]) -> bool:
+
+        hashset = set()
+
+        for num in nums:
+            if num in hashset:
+                return True
+            hashset.add(num)
+
+        return False
+
+
+
 
 
 if __name__ == "__main__":
@@ -46,4 +61,6 @@ if __name__ == "__main__":
     print(Solution1().containsDuplicate1([1,2,3,1]))
     print(Solution1().containsDuplicate1([1,2,3,4]))
     print(Solution1().containsDuplicate1([1,1,1,3,3,4,3,2,4,2]))
-
+    print(Solution2().containsDuplicate1([1,2,3,1]))
+    print(Solution2().containsDuplicate1([1,2,3,4]))
+    print(Solution2().containsDuplicate1([1,1,1,3,3,4,3,2,4,2]))
